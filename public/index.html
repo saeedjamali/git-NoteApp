@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="build/style.css" />
+    <title>Note App</title>
+  </head>
+  <body>
+    <div class="w-full h-screen bg-gray-100 block font-thin grid grid-cols-4">
+      <!-- NavBar -->
+      <section
+        class="col-span-1 w-full h-screen bg-slate-700 text-white rounded-tl-[64px] px-4 flex flex-col space-y-2"
+      >
+        <span
+          class="block text-white font-bold text-2xl w-full h-24 flex items-center justify-center border-b-[1px] border-slate-400"
+          >NOTE APP</span
+        >
+        <div
+          class="w-full flex-1 h-screen space-y-2 overflow-y-auto scroll-smooth p-1"
+        >
+          <!-- Item -->
+
+          <div
+            class="w-full p-2 max-h-36 ring-slate-100 ring-1 rounded-md space-y-1 cursor-pointer"
+          >
+            <span class="title block font-medium">New Note</span>
+            <span
+              class="description block max-h-20 font-light text-ellipsis overflow-hidden text-justify"
+              >Take note everything with tailwind tailwind tailwind tailwind
+              tailwind tailwind tailwindtailwindtailwind</span
+            >
+            <span class="date block font-thin text-left text-gray-200"
+              >Date</span
+            >
+          </div>
+        </div>
+
+        <!-- Add Note -->
+        <div class="w-full h-16 sticky bottom-0 right-0 left-0">
+          <button
+            class="text-white bg-green-600 w-full h-12 font-bold rounded-md"
+          >
+            Add Note
+          </button>
+        </div>
+      </section>
+
+      <!-- Note Items -->
+      <section class="col-span-3 w-full px-6 space-y-4 py-4 flex flex-col">
+        <div class="note font-semibold w-full rounded-lg bg-white p-4">
+          <span class="text-slate-800">دوره جاوا اسکریپت</span>
+        </div>
+        <div class="w-full flex-1 bg-white rounded-lg p-4">
+          <p>مباحث فنی</p>
+        </div>
+      </section>
+    </div>
+  </body>
+</html>
