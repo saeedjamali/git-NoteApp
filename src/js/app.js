@@ -20,24 +20,37 @@ function initNote() {
   const noteMaintitle = document.querySelector(".main__title");
   const noteMainContent = document.querySelector(".main__content");
   const deleteNote = document.querySelector(".delete__note");
+  const previewNote = document.querySelector(".notes__preview");
 
-  noteMaintitle.addEventListener("focusout", () => {
-    const updatedNote = Notes.getNote(id);
-    updatedNote.title = noteMaintitle.value;
-    updatedNote.updateAt = new Date().echoFa();
-    updatedNote.timeStamp = (new Date().valueOf() / 10000).toFixed(0);
-    Notes.updateNote(updatedNote, currentNotes);
-    location.reload();
+  [noteMaintitle, noteMainContent].forEach((input) => {
+    input.addEventListener("blur", () => {
+      const updatedNote = Notes.getNote(id);
+      updatedNote.title = noteMaintitle.value.trim();
+      updatedNote.description = noteMainContent.value.trim();
+      updatedNote.updateAt = new Date().echoFa();
+      updatedNote.timeStamp = (new Date().valueOf() / 10000).toFixed(0);
+      Notes.updateNote(updatedNote, currentNotes);
+      location.reload();
+    });
   });
 
-  noteMainContent.addEventListener("focusout", () => {
-    const updatedNote = Notes.getNote(id);
-    updatedNote.description = noteMainContent.value;
-    updatedNote.updateAt = new Date().echoFa();
-    updatedNote.timeStamp = (new Date().valueOf() / 10000).toFixed(0);
-    Notes.updateNote(updatedNote, currentNotes);
-    location.reload();
-  });
+  // noteMaintitle.addEventListener("focusout", () => {
+  //   const updatedNote = Notes.getNote(id);
+  //   updatedNote.title = noteMaintitle.value;
+  //   updatedNote.updateAt = new Date().echoFa();
+  //   updatedNote.timeStamp = (new Date().valueOf() / 10000).toFixed(0);
+  //   Notes.updateNote(updatedNote, currentNotes);
+  //   location.reload();
+  // });
+
+  // noteMainContent.addEventListener("focusout", () => {
+  //   const updatedNote = Notes.getNote(id);
+  //   updatedNote.description = noteMainContent.value;
+  //   updatedNote.updateAt = new Date().echoFa();
+  //   updatedNote.timeStamp = (new Date().valueOf() / 10000).toFixed(0);
+  //   Notes.updateNote(updatedNote, currentNotes);
+  //   location.reload();
+  // });
 
   deleteNote.addEventListener("click", () => {
     console.log("What Delete..");
@@ -58,18 +71,19 @@ function initNote() {
 }
 
 function addNotes(note) {
+  const MAX_DESCRIPTION_LEN = 50;
   let newNote = `<div
-  class="notes__list-item w-full p-2 max-h-36 ring-slate-100 ring-1 rounded-md space-y-1 cursor-pointer" data-id=${note.id}>
+  class="notes__list-item w-full p-2 max-h-36  border border-gray-100  rounded-md space-y-2 cursor-pointer" data-id=${note.id}>
   <span class="notes__title block font-medium" data-id=${note.id}>${note.title}</span>
   <span
     class="notes__body block max-h-20 font-light text-ellipsis overflow-hidden text-justify" data-id=${note.id}}
-    >${note.description}
+    >${note.description.substring(0,MAX_DESCRIPTION_LEN)}${note.description.length > MAX_DESCRIPTION_LEN ?"...":""}
     </span
   >
-  <span
-    class="notes__date block font-thin text-left text-sm text-gray-200"
-    >${note.updateAt}</span
-  >
+  <div
+  class="notes__date w-full font-thin text-left text-sm text-gray-300 "
+  >${note.updateAt}</div
+>
 </div>`;
   let currentNotes = noteList.innerHTML;
   noteList.innerHTML = currentNotes + newNote;
@@ -88,22 +102,22 @@ function addNewNote() {
   Notes.addNote(note);
   // setCounter();
   let newNote = `<div
-  class="notes__list-item w-full p-2 max-h-36 ring-slate-100 ring-1 rounded-md space-y-1 cursor-pointer" data-id=${note.id}}
->
+  class="notes__list-item w-full p-2 max-h-36  border border-gray-100 rounded-md space-y-2 cursor-pointer" data-id=${note.id}>
   <span class="notes__title block font-medium" data-id=${note.id}>${note.title}</span>
   <span
     class="notes__body block max-h-20 font-light text-ellipsis overflow-hidden text-justify" data-id=${note.id}}
     >${note.description}
     </span
   >
-  <span
-    class="notes__date block font-thin text-left text-sm text-gray-200"
-    >${note.updateAt}</span
+  <div
+    class="notes__date w-full flex items-end justify-end font-thin text-left text-sm text-gray-300"
+    >${note.updateAt}</div
   >
 </div>`;
   let currentNotes = noteList.innerHTML;
   noteList.innerHTML = currentNotes + newNote;
   setCounter();
+  location.reload();
   // console.log(strNotes);
 }
 

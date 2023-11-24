@@ -56,8 +56,9 @@
           ></textarea>
         </div>
 
-        <span
-          class="delete__note fixed bottom-12 left-16 bg-red-500 w-8 h-8 rounded-full flex items-center justify-center cursor-pointer"
+        <button
+          onclick="my_modal_3.showModal()"
+          class=" fixed bottom-12 left-16 bg-red-500 w-8 h-8 rounded-full flex items-center justify-center cursor-pointer"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -73,11 +74,23 @@
               d="M6 18L18 6M6 6l12 12"
             />
           </svg>
-        </span>
+        </button>
+
+        <!-- You can open the modal using ID.showModal() method -->
+        <dialog id="my_modal_3" class="modal">
+          <div class="modal-box">
+            <h3 class="font-bold text-lg text-red-500 mr-1">حذف يادداشت</h3>
+            <p class="py-4 text-base font-medium text-slate-600">از حذف يادداشت خود اطمينان داريد؟</p>
+            <button class="btn-error delete__note absolute left-12 bottom-6 bg-red-400 text-white py-1 px-4 font-bold rounded-md mt-4">بلی</button>
+          </div>
+          <form method="dialog" class="modal-backdrop">
+            <button>close</button>
+          </form>
+        </dialog>
       </section>
     </div>
 
-    <div
+    <!-- <div
       id="toast-success"
       class="flex fixed left-1/2 bottom-10 items-center w-full max-w-xs p-4 mb-4 text-gray-500 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800"
       role="alert"
@@ -123,28 +136,7 @@
           />
         </svg>
       </button>
-    </div>
-
-    <div role="alert" class="alert">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 24 24"
-        class="stroke-info shrink-0 w-6 h-6"
-      >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-        ></path>
-      </svg>
-      <span>مايل به حذف يادداشت انتخابي</span>
-      <div>
-        <button class="btn btn-sm">رد</button>
-        <button class="btn btn-sm btn-primary">قبول</button>
-      </div>
-    </div>
+    </div> -->
 
     <script src="/src/js/app.js"></script>
   </body>
